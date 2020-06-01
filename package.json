@@ -1,48 +1,97 @@
 {
-	"name": "music-vscode",
-	"displayName": "music-vscode",
-	"description": "Music in vscode",
-	"version": "0.0.1",
-	"engines": {
-		"vscode": "^1.45.0"
-	},
-	"categories": [
-		"Other"
-	],
-	"activationEvents": [
-		"onCommand:music-vscode.helloWorld"
-	],
-	"main": "./out/extension.js",
-	"contributes": {
-		"commands": [
-			{
-				"command": "music-vscode.helloWorld",
-				"title": "Hello World"
-			}
-		]
-	},
-	"scripts": {
-		"vscode:prepublish": "yarn run compile",
-		"compile": "tsc -p ./",
-		"lint": "eslint src --ext ts",
-		"watch": "tsc -watch -p ./",
-		"pretest": "yarn run compile && yarn run lint",
-		"test": "node ./out/test/runTest.js"
-	},
-	"devDependencies": {
-		"@types/glob": "^7.1.1",
-		"@types/mocha": "^7.0.2",
-		"@types/node": "^13.11.0",
-		"@types/vscode": "^1.45.0",
-		"@typescript-eslint/eslint-plugin": "^2.30.0",
-		"@typescript-eslint/parser": "^2.30.0",
-		"eslint": "^6.8.0",
-		"glob": "^7.1.6",
-		"mocha": "^7.1.2",
-		"typescript": "^3.8.3",
-		"vscode-test": "^1.3.0"
-	},
-	"dependencies": {
-		"node-mpv": "^1.5.0"
-	}
+  "name": "music-vscode",
+  "displayName": "music-vscode",
+  "description": "Music in vscode",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.45.0"
+  },
+  "enabledProposedApi": true,
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:music-vscode.all-songs",
+    "onCommand:music-vscode.play-pause",
+    "onCommand:music-vscode.next-track",
+    "onCommand:music-vscode.prev-track",
+    "onCommand:music-vscode.stop",
+    "onCommand:music-vscode.set-volume",
+    "onCommand:music-vscode.shuffle",
+    "onCommand:music-vscode.loop",
+    "onCommand:music-vscode.seek-forward",
+    "onCommand:music-vscode.seek-backward"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "music-vscode.all-songs",
+        "title": "Music: Play All Songs"
+      },
+      {
+        "command": "music-vscode.play-pause",
+        "title": "Music: Play/Pause"
+      },
+      {
+        "command": "music-vscode.next-track",
+        "title": "Music: Next Song"
+      },
+      {
+        "command": "music-vscode.prev-track",
+        "title": "Music: Previous Song"
+      },
+      {
+        "command": "music-vscode.stop",
+        "title": "Music: Stop"
+      },
+      {
+        "command": "music-vscode.set-volume",
+        "title": "Music: Set Volume"
+      },
+      {
+        "command": "music-vscode.shuffle",
+        "title": "Music: Shuffle"
+      },
+      {
+        "command": "music-vscode.loop",
+        "title": "Music: Loop"
+      },
+      {
+        "command": "music-vscode.seek-forward",
+        "title": "Music: Seek Forward"
+      },
+      {
+        "command": "music-vscode.seek-backward",
+        "title": "Music: Seek Backward"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "yarn run compile",
+    "compile": "tsc -p ./",
+    "lint": "eslint src --ext ts",
+    "watch": "tsc -watch -p ./",
+    "fix-sqlite3": "electron-rebuild -w sqlite3 -p -v 7.2.4",
+    "postinstall": "yarn fix-sqlite3"
+  },
+  "devDependencies": {
+    "@types/glob": "^7.1.1",
+    "@types/mocha": "^7.0.2",
+    "@types/node": "^13.11.0",
+    "@types/vscode": "^1.45.0",
+    "@typescript-eslint/eslint-plugin": "^2.30.0",
+    "@typescript-eslint/parser": "^2.30.0",
+    "electron-rebuild": "^1.11.0",
+    "eslint": "^6.8.0",
+    "glob": "^7.1.6",
+    "mocha": "^7.1.2",
+    "typescript": "^3.8.3",
+    "vscode-test": "^1.3.0"
+  },
+  "dependencies": {
+    "node-mpv": "^1.5.0",
+    "sqlite": "^4.0.9",
+    "sqlite3": "^4.2.0"
+  }
 }

@@ -1,3 +1,14 @@
+declare type Song = {
+  filePath: string;
+  title: string;
+  thumbnail: string;
+  artist: string;
+  length: number;
+  numListens: number;
+  albumId: string;
+  liked: boolean;
+};
+
 declare module "node-mpv" {
   import { PathLike } from "fs";
 
@@ -43,7 +54,7 @@ declare module "node-mpv" {
     "media-title": string | null;
     "playlist-pos": number;
     "playlist-count": number;
-    loop: string;
+    loop: number | "inf" | "no";
     fullscreen?: boolean;
     "sub-visibility"?: boolean;
     [key: string]: any; // For custom observed properties
@@ -55,30 +66,31 @@ declare module "node-mpv" {
     constructor(options?: Options, cliArgs?: string[]);
     quit(): Promise<void>;
 
-    load(songPath: PathLike, mode?: "replace" | "append" | "append-play", options?: string[]): Promise<void>;
-    loadFile(songPath: PathLike, mode?: "replace" | "append" | "append-play", options?: string[]): Promise<void>;
-    loadStream(stream: NodeJS.ReadStream, mode?: "replace" | "append" | "append-play", options?: string[]): Promise<void>;
-    loadPlaylist(file: PathLike, mode: "replace" | "append", options?: string[]): Promise<void>;
-    append(file: PathLike, mode: "append" | "append-play"): Promise<void>;
-    next(mode: "weak" | "force"): Promise<boolean>;
-    prev(mode: "weak" | "force"): Promise<boolean>;
-    clearPlaylist(): Promise<void>;
-    playlistRemove(index: number | "current"): Promise<void>;
-    playlistMove(index1: number, index2: number): Promise<void>;
-    shuffle(): Promise<void>;
+    load(songPath: PathLike, mode?: "replace" | "append" | "append-play", options?: string[]): void;
+    loadFile(songPath: PathLike, mode?: "replace" | "append" | "append-play", options?: string[]): void;
+    loadStream(stream: NodeJS.ReadStream, mode?: "replace" | "append" | "append-play", options?: string[]): void;
+    loadPlaylist(file: PathLike, mode?: "replace" | "append", options?: string[]): void;
+    append(file: PathLike, mode?: "append" | "append-play"): void;
+    next(mode?: "weak" | "force"): boolean;
+    prev(mode?: "weak" | "force"): boolean;
+    clearPlaylist(): void;
+    playlistRemove(index: number | "current"): void;
+    playlistMove(index1: number, index2: number): void;
+    shuffle(): void;
 
-    stop(): Promise<void>;
-    pause(): Promise<void>;
-    resume(): Promise<void>;
-    togglePause(): Promise<void>;
-    mute(): Promise<void>;
-    unmute(): Promise<void>;
-    toggleMute(): Promise<void>;
-    volume(volumeLevel: number): Promise<void>;
-    adjustVolume(value: number): Promise<void>;
-    seek(seconds: number): Promise<void>;
-    goToPosition(seconds: number): Promise<void>;
-    loop(times: number | "inf"): Promise<void>;
+    stop(): void;
+    play(): void;
+    pause(): void;
+    resume(): void;
+    togglePause(): void;
+    mute(): void;
+    unmute(): void;
+    toggleMute(): void;
+    volume(volumeLevel: number): void;
+    adjustVolume(value: number): void;
+    seek(seconds: number): void;
+    goToPosition(seconds: number): void;
+    loop(times: number | "inf" | "no"): void;
 
     addAudioTrack(file: PathLike, flag?: "select" | "auto" | "cached", title?: string, lang?: string): Promise<void>;
     removeAudioTrack(id: string): Promise<void>;
@@ -112,7 +124,7 @@ declare module "node-mpv" {
 
     setProperty<T = any>(property: string, value: T): Promise<void>;
     setMultipleProperties(properties: { [key: string]: any }): Promise<void>;
-    getPropery<T = any>(property: string): Promise<T>;
+    getProperty<T = any>(property: string): Promise<T>;
     addProperty(property: string, value: number): Promise<void>;
     multiplyProperty(property: string, value: number): Promise<void>;
     cycleProperty(property: string): Promise<void>;
