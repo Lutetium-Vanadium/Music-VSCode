@@ -2,14 +2,20 @@
   "name": "music-vscode",
   "displayName": "music-vscode",
   "description": "Music in vscode",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "engines": {
     "vscode": "^1.45.0"
   },
   "enabledProposedApi": true,
+  "icon": "icon.png",
   "categories": [
     "Other"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Lutetium-Vanadium/Music-VSCode"
+  },
+  "publisher": "Lutetium-Vanadium",
   "activationEvents": [
     "onCommand:music-vscode.all-songs",
     "onCommand:music-vscode.play-pause",
