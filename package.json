@@ -78,7 +78,7 @@
     "compile": "tsc -p ./",
     "lint": "eslint src --ext ts",
     "watch": "tsc -watch -p ./",
-    "fix-sqlite3": "electron-rebuild -w sqlite3 -p -v 7.2.4",
+    "fix-sqlite3": "node ./scripts/installAppDeps.js",
     "postinstall": "yarn fix-sqlite3"
   },
   "devDependencies": {
@@ -88,6 +88,7 @@
     "@types/vscode": "^1.45.0",
     "@typescript-eslint/eslint-plugin": "^2.30.0",
     "@typescript-eslint/parser": "^2.30.0",
+    "axios": "^0.19.2",
     "electron-rebuild": "^1.11.0",
     "eslint": "^6.8.0",
     "glob": "^7.1.6",

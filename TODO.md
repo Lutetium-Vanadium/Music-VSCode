@@ -19,4 +19,5 @@
   - [ ] Make a queue viewer
 
 - chores
+  - [ ] sqlite3 connector without native dependencies
   - [ ] make proper readme and stuff

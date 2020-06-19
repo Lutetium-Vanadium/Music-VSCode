@@ -23,6 +23,15 @@ There are a few commands:
 
 The Extension requires [mpv](https://mpv.io/) to be installed in the path. It uses this to play the sound.
 
+## Known problems
+
+The extension won't start. This is because it uses sqlite3 which has native dependencies so it must be built for the right electron version.
+Run `yarn fix-sqlite3` to install native dependencies before building the extension. <br>
+
+> If the script is not able to detect electron version used by your current vscode,
+> go to `Help > Toggle Developer Tools` which should bring up the chromium dev tools to the right.
+> Then type `process.versions.electron` into the console and it should give a version number. Then run `yarn fix-sqlite3 <version-number>`.
+
 ## TODO
 
 - Make a queue viewer
